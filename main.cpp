@@ -27,8 +27,8 @@
   8. Because beetles prefer longer segment k-segments will be picked at first:
   eb <= k ? pick(lmin + 1) : pick(lmin).
   9. If h >= (int)log2(x) then length of each segment is:
-  (int)((x - b) / m) < 2 -> return [0, 0].
-  10. The case y == 1 must be considererd individually.
+  (int)(x/h^2) < 2, e.g. segment length == 0 || 1 => return [0, 0].
+  10. The case y == 1 must be considered individually.
 */
 
 #include <iostream>
@@ -50,7 +50,7 @@ std::pair<size_t, size_t> func(size_t x, size_t y)
 
   const size_t h = std::log2(y); // Height of BST
   const size_t m = pow(2, h);    // Number of segments
-  const size_t b = m - 1;        // Number of beetles
+  const size_t b = m - 1;        // Number of hidden beetles
 
   if (h == (size_t)(std::log2(x))) // All remaining segment are too short
     return {0, 0};
